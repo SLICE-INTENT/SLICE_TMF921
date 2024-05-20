@@ -77,16 +77,16 @@ idan:EventR1
   a rdfs:Class ;
   rdfs:subClassOf imo:Event ;
   logi:if [ t:after [imo:timeOfLastEvent [rdfs:member idan:EventR1 ;
-                                              rdfs:member idan:IR1_4_RAN_Probe ]]  ,
+                                              rdfs:member idan:IR1_41_RAN_Probe ]]  ,
                          [t:hasDuration idan:5M ] ;
                 t:before [ t:hasBeginning imo:Now ] ;
          ] ;
-  imo:eventFor idan:IR1_4_RAN_Probe
+  imo:eventFor idan:IR1_41_RAN_Probe
 .
 
 idan:ES1_Slice_reporting_expectation_Probe
   a icm:ReportingExpectation ;
-  icm:target idan:IR1_4_RAN_Probe  ;
+  icm:target idan:IR1_41_RAN_Probe  ;
   icm:reportDestination [ rdfs:member idan:Operations ] ;
   icm:reportTriggers [ rdfs:member imo:IntentRejected ; 
                        rdfs:member imo:IntentAccepted ;

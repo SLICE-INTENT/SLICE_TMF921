@@ -95,9 +95,10 @@ if (req.body.name.indexOf('ACTN')>0) {
     reports = ['IR14R1Probe_RAN_Intent_Accepted','R14R3Probe_Intent_Degraded']
     handlerUtils23.addGenerateIntentReport('R14R3Probe_Intent_Degraded',req)
   }
+
   if (expression.indexOf("IR1_41_RAN_Probe") >= 0) {
     reports = ['IR14R1Probe_RAN_Intent_Accepted','R14R2Probe_Intent_Compliant']
-    handlerUtils23.addGenerateIntentReport('R14R3Probe_Intent_Degraded',req)
+    handlerUtils23.addGenerateIntentReport('R14R2Probe_Intent_Compliant',req)
   }
 
   if (expression.indexOf("IR1_4_RAN") >= 0) {
