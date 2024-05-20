@@ -86,7 +86,7 @@ exports.createIntent = async function(req, res, next) {
 
 /* XXXXXXXXXXXXX Huawei IRC - Start  XXXXXXXXXXXXXXXx*/
 // calls the intent handler for the knowledge extraction and storage
-            if ((expression.indexOf("R1")>0) || (expression.indexOf("R2")>0) || (expression.indexOf("R3")>0)){ // check whether it's a resource intent
+            if ((expression.indexOf("R1")>0) || (expression.indexOf("R2")>0) || (expression.indexOf("R3")>0) || (expression.indexOf("IR1_4")>0) ){ // check whether it's a resource intent
               intentHandler.processIntent(req);
             }
 //for the time being using the common handler for the biz intent

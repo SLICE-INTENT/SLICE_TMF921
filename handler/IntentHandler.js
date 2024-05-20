@@ -55,7 +55,7 @@ if (req.body.name.indexOf('ACTN')>0) {
   var reports = [];
 
   if (sendResource) {
-    /// Test R31 process
+    /// Test R31 process 
     if (expression.indexOf("R3_1") >= 0) {
       reports = ['R31R1_Intent_Accepted','R31R2_Intent_Compliant']
       handlerUtils23.addGenerateIntentReport('R31R2_Intent_Compliant',req)
@@ -77,6 +77,11 @@ if (req.body.name.indexOf('ACTN')>0) {
       console.log(`log: ${report} sent`);
     }) 
   }
+  if (expression.indexOf("IR1_4_RAN_Probe") >= 0) {
+    reports = ['IR14R1Probe_RAN_Intent_Accepted','IR2Probe_RAN_Intent_Compliant']
+    handlerUtils23.addGenerateIntentReport('IR2Probe_RAN_Intent_Compliant',req)
+  }
+
   if (expression.indexOf("R3_2") >= 0) {
     reports = ['R32R2_Intent_Compliant']
   } else if (expression.indexOf("R2_2") >= 0) {
@@ -84,6 +89,24 @@ if (req.body.name.indexOf('ACTN')>0) {
   } else if (expression.indexOf("R1_2") >= 0) {
     reports = ['R12R2_Intent_Compliant']
   }
+
+  // IDAN4 start
+  if (expression.indexOf("IR1_4_RAN_Probe") >= 0) {
+    reports = ['IR14R1Probe_RAN_Intent_Accepted','R14R3Probe_Intent_Degraded']
+    handlerUtils23.addGenerateIntentReport('R14R3Probe_Intent_Degraded',req)
+  }
+  if (expression.indexOf("IR1_41_RAN_Probe") >= 0) {
+    reports = ['IR14R1Probe_RAN_Intent_Accepted','R14R2Probe_Intent_Compliant']
+    handlerUtils23.addGenerateIntentReport('R14R3Probe_Intent_Degraded',req)
+  }
+
+  if (expression.indexOf("IR1_4_RAN") >= 0) {
+    reports = ['R14R1_Intent_Accepted','R14R2_Intent_Compliant']
+    handlerUtils23.addGenerateIntentReport('R14R2_Intent_Compliant',req)
+  }
+  // IDAN4 end
+  
+
   reports.forEach (report => { 
     handlerUtils.sendIntentReportEvent(report,report+'.ttl',req);
     console.log(`log: ${report} sent`);

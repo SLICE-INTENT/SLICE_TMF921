@@ -1,0 +1,65 @@
+########################################################################################
+####developed by Verizon - Ganesh Bathivi, Anandh Sankaralingam, Mohanraj Srinivasan####
+########################################################################################
+@prefix icm:  <http://tio.models.tmforum.org/tio/v3.2.0/IntentCommonModel#> .
+@prefix imo:  <http://tio.models.tmforum.org/tio/v3.2.0/IntentManagmentOntology#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix idan: <http://www.example.org/IDAN4#> .
+@prefix t:    <http://www.w3.org/2006/time#> .
+@prefix logi:  <http://tio.models.tmforum.org/tio/v3.2.0/LogicalOperators#> .
+@prefix quan: <http://tio.models.tmforum.org/tio/v3.2.0/QuantityOntology#> .
+@prefix set:  <http://tio.models.tmforum.org/tio/v3.2.0/SetOperators#> .
+@prefix fun:  <http://tio.models.tmforum.org/tio/v3.2.0/FunctionOntology#> .
+@prefix ui: <http://www..example.org/ui#> .
+@prefix mf: <http://www..example.org/mf#> .
+@prefix cem: <http://tio.labs.tmforum.org/tio/v1.0.0/CatalystExtensionModel#> .
+@prefix iv: <http://tio.models.tmforum.org/tio/v3.2.0/IntentValidity#> .
+
+#intent
+idan:IR1_4_RAN
+  a icm:Intent ;
+  cem:layer idan:resource ;
+  imo:intentOwner idan:RAN ;
+  rdfs:comment "'Intent for Enterprise Slice'" ;
+  icm:hasExpectation idan:ES1_Slice_expectation,
+                        idan:ES1_Slice_reporting_expectation
+     .
+
+idan:ES1_Slice_expectation
+  a icm:DeliveryExpectation ;
+    icm:target idan:RanNetwork ;
+.
+
+# targets
+idan:RanNetwork
+  a icm:Target ;
+  icm:allOf [ rdfs:member idan:RanSlice]
+.
+
+# reporting
+
+# event for time-based reporting. Triggereing every 5 minutes
+idan:EventR1
+  a rdfs:Class ;
+  rdfs:subClassOf imo:Event ;
+  logi:if [ t:after [imo:timeOfLastEvent [rdfs:member idan:EventR1 ;
+                                              rdfs:member idan:IR1_4_RAN ]]  ,
+                         [t:hasDuration idan:5M ] ;
+                t:before [ t:hasBeginning imo:Now ] ;
+         ] ;
+  imo:eventFor idan:IR1_4_RAN
+.
+
+idan:ES1_Slice_reporting_expectation
+  a icm:ReportingExpectation ;
+  icm:target idan:IR1_4_RAN  ;
+  icm:reportDestination [ rdfs:member idan:Operations ] ;
+  icm:reportTriggers [ rdfs:member imo:IntentRejected ; 
+                       rdfs:member imo:IntentAccepted ;
+                       rdfs:member imo:IntentDegrades ;
+                       rdfs:member imo:IntentComplies ;
+                       rdfs:member imo:IntentRemoval ;
+                       rdfs:member idan:EventR1 ]
+.

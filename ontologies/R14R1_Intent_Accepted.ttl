@@ -1,0 +1,51 @@
+########################################################################################
+####developed by Verizon - Ganesh Bathivi, Anandh Sankaralingam, Mohanraj Srinivasan####
+########################################################################################
+@prefix icm:  <http://tio.models.tmforum.org/tio/v3.2.0/IntentCommonModel#> .
+@prefix imo:  <http://tio.models.tmforum.org/tio/v3.2.0/IntentManagmentOntology#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix idan: <http://www.example.org/IDAN4#> .
+@prefix t:    <http://www.w3.org/2006/time#> .
+@prefix logi:  <http://tio.models.tmforum.org/tio/v3.2.0/LogicalOperators#> .
+@prefix quan: <http://tio.models.tmforum.org/tio/v3.2.0/QuantityOntology#> .
+@prefix set:  <http://tio.models.tmforum.org/tio/v3.2.0/SetOperators#> .
+@prefix fun:  <http://tio.models.tmforum.org/tio/v3.2.0/FunctionOntology#> .
+@prefix ui: <http://www..example.org/ui#> .
+@prefix mf: <http://www..example.org/mf#> .
+@prefix cem: <http://tio.labs.tmforum.org/tio/v1.0.0/CatalystExtensionModel#> .
+@prefix   iv: <http://tio.models.tmforum.org/tio/v3.2.0/IntentValidity#> .
+
+##### Service Intent Report ##########################################################
+#
+# This intent report is sent on acceptance of the intent 
+# 
+idan:IR14R1_RAN_Intent_Accepted
+  a icm:IntentReport ;
+  rdfs:comment "'Intent Report after accepting the intent'" ;
+  icm:about idan:IR1_4_RAN ;
+  # put in the live timestamp from the time the report is created:
+    icm:reportTimestamp            date_to_be_generated^^xsd:dateTime ;
+  icm:reportHandlingState icm:StateAccepted ;
+  icm:updateState icm:StateNoUpdate ;
+  icm:reportNumber 1 ;
+  cem:layer idan:resource ;
+  icm:hasExpectationReport idan:R14R1E1_property ,
+                           idan:R14R1E2_reporting ; 
+.
+
+
+idan:R14R1E1_property
+  a icm:ExpectationReport ;
+  icm:reportsAbout idan:ES1_Slice_property_Probe ;
+.
+
+         
+idan:R14R1E2_reporting
+  a icm:ExpectationReport ;
+  icm:reportsAbout idan:ES1_Slice_reporting_expectation ;
+  icm:reportingIntervalRemaining [ a t:Duration ;
+                                   t:numericDuration idan:5M 
+                            ] ;
+.

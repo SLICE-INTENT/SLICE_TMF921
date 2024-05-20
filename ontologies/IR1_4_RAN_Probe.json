@@ -1,0 +1,23 @@
+{
+    "statusChangeDate": "2022-07-23T04:56:07.000+00:00",
+    "expression": {
+      "iri": "http://tio.models.tmforum.org/tio/v3.2.0/IntentCommonModel/",
+      "@baseType": "Expression",
+      "@type": "TurtleExpression",
+      "expressionLanguage": "Turtle",
+      "expressionValue": "@prefix icm:  <http://tio.models.tmforum.org/tio/v3.2.0/IntentCommonModel#> .\n@prefix imo:  <http://tio.models.tmforum.org/tio/v3.2.0/IntentManagmentOntology#> .\n@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .\n@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .\n@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .\n@prefix idan: <http://www.example.org/IDAN4#> .\n@prefix t:    <http://www.w3.org/2006/time#> .\n@prefix logi:  <http://tio.models.tmforum.org/tio/v3.2.0/LogicalOperators#> .\n@prefix quan: <http://tio.models.tmforum.org/tio/v3.2.0/QuantityOntology#> .\n@prefix set:  <http://tio.models.tmforum.org/tio/v3.2.0/SetOperators#> .\n@prefix fun:  <http://tio.models.tmforum.org/tio/v3.2.0/FunctionOntology#> .\n@prefix ui: <http://www..example.org/ui#> .\n@prefix mf: <http://www..example.org/mf#> .\n@prefix cem: <http://tio.labs.tmforum.org/tio/v1.0.0/CatalystExtensionModel#> .\n@prefix iv: <http://tio.models.tmforum.org/tio/v3.2.0/IntentValidity#> .\n\n#intent\nidan:IR1_4_RAN_Probe\n  a icm:Intent ;\n  cem:layer idan:resource ;\n  imo:intentOwner idan:RAN ;\n  rdfs:comment \"'Intent for Enterprise Slice'\" ;\n  icm:hasExpectation idan:ES1_Slice_expectation_Probe,\n                       idan:ES1_Slice_property_Probe,  \n                        idan:ES1_Slice_reporting_expectation_Probe\n     .\n\nidan:ES1_Slice_expectation_Probe\n  a icm:DeliveryExpectation ;\n    icm:target idan:RanNetwork ;\n.\n\n# targets\nidan:RanNetwork\n  a icm:Target ;\n  icm:allOf [ rdfs:member idan:RanSlice]\n.\n\n# we need certain performance/QoE properties for the service\nidan:ES1_Slice_property_Probe\n  a icm:PropertyExpectation ;\n  icm:target idan:RanNetwork ;\n  logi:allOf [rdfs:member idan:CS1_RAN]\n.\n\n# conditions\n\nidan:CS1_RAN\n  a icm:Condition ;\n  rdfs:label \"RanSlice\" ;\n  idan:BandwidthPerSlice [ quan:greater\n                 [ rdf:value \"10\"^^xsd:decimal ;\n                   icm:unit80000 \"'Mbps'\"]\n               ];\n  idan:UserCount [ quan:equal\n                 [ rdf:value \"100\"^^xsd:integer] \n               ];\n  idan:Location [ quan:equal\n                 [ rdf:value \"houston\"^^xsd:string] \n               ];\n  idan:Service [ quan:equal\n                 [ rdf:value \"gamingslice\"^^xsd:string] \n               ];\n  idan:RanLatency [ quan:smaller\n                 [ rdf:value \"25\"^^xsd:decimal ;\n                   icm:unit80000 \"'ms'\" ]\n               ] ;\n.\n\n# reporting\n\n# event for time-based reporting. Triggereing every 5 minutes\nidan:EventS1\n  a rdfs:Class ;\n  rdfs:subClassOf imo:Event ;\n  logi:if [ t:after [imo:timeOfLastEvent [rdfs:member idan:EventS1 ;\n                                              rdfs:member idan:IR1_4_RAN_Probe ]]  ,\n                         [t:hasDuration idan:5M ] ;\n                t:before [ t:hasBeginning imo:Now ] ;\n         ] ;\n  imo:eventFor idan:IR1_4_RAN_Probe\n.\n\nidan:ES1_Slice_reporting_expectation_Probe\n  a icm:ReportingExpectation ;\n  icm:target idan:IR1_4_RAN_Probe  ;\n  icm:reportDestination [ rdfs:member idan:Operations ] ;\n  icm:reportTriggers [ rdfs:member imo:IntentRejected ; \n                       rdfs:member imo:IntentAccepted ;\n                       rdfs:member imo:IntentDegrades ;\n                       rdfs:member imo:IntentComplies ;\n                       rdfs:member imo:IntentRemoval ;\n                       rdfs:member idan:EventS1 ]\n."
+    },
+    "lifecycleStatus": "Created",
+    "@baseType": "Intent",
+    "validFor": {
+      "startDateTime": "2024-04-12T23:20:50.52Z",
+      "endDateTime": "2024-04-22T23:20:50.52Z"
+    },
+    "@type": "Intent",
+    "lastUpdate": "2024-01-23T04:56:07.000+00:00",
+    "name": "IR1_4_RAN_Probe",
+    "description": "IR1_4_RAN_Probe",
+    "creationDate": "2024-01-23T04:56:07.000+00:00",
+    "@schemaLocation": "https://mycsp.com:8080/tmf-api/schema/Common/TurtleExpression.schema.json",
+    "version": "1"
+  }
