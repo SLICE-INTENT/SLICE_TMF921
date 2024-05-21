@@ -22,7 +22,7 @@
 idan:IR2Probe_RAN_Intent_Compliant
   a icm:IntentReport ;
   rdfs:comment "'Intent Report after Accepted'" ;
-  icm:about idan:IR1_4_RAN_Probe ;
+  icm:about idan:IR1_41_RAN_Probe ;
   # put in the live timestamp from the time the report is created:
     icm:reportTimestamp            date_to_be_generated^^xsd:dateTime ;
   icm:reportHandlingState icm:StateCompliant ;

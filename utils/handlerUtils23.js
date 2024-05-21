@@ -24,7 +24,7 @@ const notificationUtils = require('../utils/notificationUtils');
 const fetch = require('node-fetch');
 const processObjectives = require('./processObjectives');
 
-const server = process.env.GRAPHQL_ENGINE_URL!==undefined ? process.env.GRAPHQL_ENGINE_URL:"10.220.239.74"
+const server = process.env.GRAPHQL_ENGINE_URL!==undefined ? process.env.GRAPHQL_ENGINE_URL:"10.81.1.26"
 console.log("Server: "+server)
 const RDF = $rdf.Namespace("http://www.w3.org/1999/02/22-rdf-syntax-ns#");
 const RDFS = $rdf.Namespace("http://www.w3.org/2000/01/rdf-schema#");

@@ -74,6 +74,13 @@ exports.processIntent = function(req) {
     serviceOrder = 'service_order_CSP_USAGE_CONDITION_CREATE.json';
     name = 'S3;'
   }
+  else if (expresion.indexOf("IR1_41_RAN_Probe") > 0) {
+    serviceOrder = 'service_order_SLICE_SERVICE_Probe_Success.json';
+    name = 'IR1_41;'
+  }
+
+  console.log("serviceOrder json is: " + serviceOrder);
+
     //From expression extract triples and load the intent in GraphDB 
   handlerUtils.extractTriplesandKG(expression, `insert`, 'text/turtle',name);
 

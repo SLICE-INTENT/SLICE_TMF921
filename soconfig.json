@@ -1,5 +1,6 @@
 {
- "SO_BASE_URL": "https://idancatalyst.qa.cloud.intraway.com",
- "SO_USERNAME": "idan3_API@intraway.com",
- "SO_PASSWORD": "dsewo9dsp983wjr"
+ "SO_BASE_URL": "https://10.81.1.82",
+ "SO_KEYCLOACK_HOST": "10.46.1.14",
+ "SO_USERNAME": "nap-admin-user",
+ "SO_PASSWORD": "nap-admin-user"
 }

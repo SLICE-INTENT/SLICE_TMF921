@@ -22,7 +22,7 @@
 # This intent report is sent on acceptance of the service intnet to the intnet 
 # manager on business level
 # 
-idan:IS1Probe_RAN_Intent_Degraded
+idan:R14R3Probe_RAN_Intent_Degraded
   a icm:IntentReport ;
   rdfs:comment "'Intent Report after compliant'" ;
   icm:about idan:IR1_4_RAN_Probe ;

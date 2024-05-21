@@ -46,6 +46,46 @@ function readSoConfig() {
 
 /////////////////////////////////////////////
 // Function performs login to the SO       //
+// and stores the token for subsequent use //
+/////////////////////////////////////////////
+async function storeNWOSoTokenAfterLogin() {
+  readSoConfig();
+
+  var details = {
+      'username': '${SO_USERNAME}',
+      'password': '${SO_PASSWORD}',
+      'grant_type': 'password',
+      'client_id': 'amdocs-client'
+  };
+
+  const formBody = Object.keys(details).map(key => encodeURIComponent(key) + '=' + encodeURIComponent(details[key])).join('&');
+
+  const response = await fetch("http://${SO_KEYCLOACK_HOST}:8080/auth/realms/amdocs/protocol/openid-connect/token", {
+    method: 'POST',
+    headers: {
+      'Accept': '*/*',
+      'Content-Type': 'application/x-www-form-urlencoded'
+    },
+    body: formBody,
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error('Http response was not OK');
+      }
+      return response.json();
+    })
+    .then((jsonResp) => {
+      token = jsonResp.access_token;
+      console.log("Amdocs NWO Token = " + token);
+    })
+    .catch((error) => {
+      console.error('SO: storeNWOSoTokenAfterLogin failed with error:', error);
+    });
+}
+
+
+/////////////////////////////////////////////
+// Function performs login to the SO       //
 // and stores the token for subsequent use //  
 /////////////////////////////////////////////
 async function storeSoTokenAfterLogin() {
@@ -82,14 +122,15 @@ async function storeSoTokenAfterLogin() {
 // Function sends the service order to SO           //
 //////////////////////////////////////////////////////
 async function sendServiceOrder(order) {
-  const response = await storeSoTokenAfterLogin()
-    .then (response => {fetch(SO_BASE_URL + "/service-order-manager/api/service-orders/", {
+  //const response = await storeSoTokenAfterLogin()
+  const response = await storeNWOSoTokenAfterLogin()
+    .then (response => {fetch(SO_BASE_URL + "/api/v2/serviceOrder", {
     method: 'POST',
     headers: {
       'Accept': '*/*',
-      'X-Organization-Code': 'IDANCATALYST',
+      'X-Tenant': 'Test',
       'X-Authorization': token,
-      'Content-Type': 'application/iway-service-order-post-v1-hal+json'
+      'Content-Type': 'application/json'
     },
     body: order,
   })

@@ -823,7 +823,7 @@ mongoUtils.connect().then(db => {
            //alert(this.responseText);
         }
       };
-    var url = 'http://10.220.239.74:8092/tmf-api/intent/v4/intent/'+id;
+    var url = 'http://localhost:8092/tmf-api/intent/v4/intent/'+id;
     console.log('URL: '+url);
     xhttp.open("PATCH", url, true);
     xhttp.setRequestHeader("Content-Type", "application/json");

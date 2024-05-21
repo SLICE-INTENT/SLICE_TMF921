@@ -2,11 +2,11 @@ const { ApolloClient, ApolloProvider, InMemoryCache, gql, useSubscription, useMu
 const { HttpLink,createHttpLink } = require("apollo-link-http");
 const {fetch} = require('apollo-env');
 
-const grpurl = process.env.GRAPHQL_ENGINE_URL!==undefined ? process.env.GRAPHQL_ENGINE_URL:"10.220.239.74"
+const grpurl = process.env.GRAPHQL_ENGINE_URL!==undefined ? process.env.GRAPHQL_ENGINE_URL:"10.81.1.26"
 
 const httpLink = new HttpLink({
   fetch: fetch,
-  uri: `http://${grpurl}:8080/v1/graphql`,
+  uri: `http://${grpurl}:7200/v1/graphql`,
   headers: { 'x-hasura-admin-secret': "myadminsecretkey" },
   defaultHttpLink: false
 });

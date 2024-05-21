@@ -2,7 +2,7 @@
 "db_prot": "mongodb",
 "db_user": "mongodb",
 "db_password": "mongodb",
-"db_host": "localhost",
+"db_host": "10.81.1.26",
 "db_port": 27017,
 "db_name": "tmf",
 "alarm_host": "http://localhost:10011",

@@ -77,10 +77,6 @@ if (req.body.name.indexOf('ACTN')>0) {
       console.log(`log: ${report} sent`);
     }) 
   }
-  if (expression.indexOf("IR1_4_RAN_Probe") >= 0) {
-    reports = ['IR14R1Probe_RAN_Intent_Accepted','IR2Probe_RAN_Intent_Compliant']
-    handlerUtils23.addGenerateIntentReport('IR2Probe_RAN_Intent_Compliant',req)
-  }
 
   if (expression.indexOf("R3_2") >= 0) {
     reports = ['R32R2_Intent_Compliant']

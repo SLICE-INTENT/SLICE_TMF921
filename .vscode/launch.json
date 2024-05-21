@@ -9,7 +9,7 @@
         "skipFiles": ["<node_internals>/**"],
         "program": "${workspaceFolder}\\index.js",
         "env": {
-          "GRAPHQL_ENGINE_URL": "10.220.239.74",
+          "GRAPHQL_ENGINE_URL": "localhost",
           "SEND_RESOURCE_INTENT": true,
           "maxReports": 5
        }
