@@ -1,0 +1,113 @@
+{
+    "orderItem": [
+        {
+            "action": "add",
+            "id": "1acf14d2-2620-4959-a175-12324",
+            "service": {
+                "id": "",
+                "serviceCharacteristic": [
+                    {
+                        "name": "serviceType",
+                        "value": {
+                            "@type": "string",
+                            "serviceType": "Broadcasting Slice"
+                        },
+                        "valueType": "string"
+                    },
+                    {
+                        "name": "sliceName",
+                        "value": {
+                            "@type": "string",
+                            "sliceName": "Slice1"
+                        },
+                        "valueType": "string"
+                    },
+                    {
+                        "name": "orgName",
+                        "value": {
+                            "@type": "string",
+                            "orgName": "ORG-1"
+                        },
+                        "valueType": "string"
+                    },
+                    {
+                        "name": "networkSliceSharingIndicator",
+                        "value": {
+                            "@type": "networkSliceSharingIndicator",
+                            "networkSliceSharingIndicator": "NON-SHARED"
+                        },
+                        "valueType": "networkSliceSharingIndicator"
+                    },
+                    {
+                        "name": "maxNumberofUEs",
+                        "value": {
+                            "@type": "integer",
+                            "maxNumberofUEs": 100
+                        },
+                        "valueType": "integer"
+                    },
+                    {
+                        "name": "plmnInfoList",
+                        "value": {
+                            "@type": "list",
+                            "plmnInfoList": "[{\"pLMNId\":{\"mnc\":310,\"mcc\":\"310\"},\"sNSSAI\":{\"sST\":1}}]"
+                        },
+                        "valueType": "list"
+                    },
+                    {
+                        "name": "initiatedBy",
+                        "value": {
+                            "@type": "string",
+                            "initiatedBy": "Climate Pledge Arena"
+                        },
+                        "valueType": "string"
+                    },
+                    {
+                        "name": "sliceStatus",
+                        "value": {
+                            "@type": "string",
+                            "sliceStatus": "Deactivate"
+                        },
+                        "valueType": "string"
+                    },
+                    {
+                        "name": "siteName",
+                        "value": {
+                            "@type": "string",
+                            "siteName": "Climate Pledge Arena"
+                        },
+                        "valueType": "string"
+                    },
+                    {
+                        "name": "orgId",
+                        "value": {
+                            "@type": "string",
+                            "orgId": "ORG-1"
+                        },
+                        "valueType": "string"
+                    },
+                    {
+                        "name": "sST",
+                        "value": {
+                            "@type": "integer",
+                            "sST": 1
+                        },
+                        "valueType": "integer"
+                    },   {
+                        "name": "probe",
+                        "value": {
+                            "@type": "boolean",
+                            "probe": true
+                        },
+                        "valueType": "boolean"
+                    }
+                ],
+                "serviceSpecification": {
+                    "id": "608b2ef3-9b15-41ea-abb1-abcd1b8cec6f",
+                    "invariantID": "51513c0b-233c-471f-9108-d237b153feae",
+                    "version": "41.0.0"
+                }
+            }
+        }
+    ]
+}

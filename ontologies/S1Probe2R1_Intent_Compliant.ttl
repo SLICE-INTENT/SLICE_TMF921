@@ -19,10 +19,10 @@
 # This intent report is sent on acceptance of the service intnet to the intnet 
 # manager on business level
 # 
-idan:IS1Probe1_Construction_Intent_Compliant
+idan:IS1Probe1_Gameslice_Intent_Compliant
   a icm:IntentReport ;
   rdfs:comment "'Intent Report after compliant'" ;
-  icm:about idan:IS1_Construction_Probe_2 ;
+  icm:about idan:IS1_Gameslice_Probe_2 ;
   # put in the live timestamp from the time the report is created:
     icm:reportTimestamp            date_to_be_generated^^xsd:dateTime ;
   icm:reportHandlingState icm:StateCompliant ;
@@ -35,7 +35,7 @@ idan:IS1Probe1_Construction_Intent_Compliant
 
 idan:S1R2E1_property
     a icm:PropertyExpectationReport ; 
-    icm:about idan:ES1_helmet_property_Probe_2 ;
+    icm:about idan:IS1_Gameslice_Probe_2 ;
     icm:result false ; 
     icm:resultFrom idan:CR1 .
 

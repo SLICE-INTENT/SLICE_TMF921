@@ -25,6 +25,8 @@ const fetch = require('node-fetch');
 const processObjectives = require('./processObjectives');
 
 const server = process.env.GRAPHQL_ENGINE_URL!==undefined ? process.env.GRAPHQL_ENGINE_URL:"10.81.1.26"
+const serverPort = process.env.SERVER_PORT!==undefined ? process.env.SERVER_PORT:8092;
+
 console.log("Server: "+server)
 const RDF = $rdf.Namespace("http://www.w3.org/1999/02/22-rdf-syntax-ns#");
 const RDFS = $rdf.Namespace("http://www.w3.org/2000/01/rdf-schema#");
@@ -54,7 +56,7 @@ var graphDBContext = null;
 // property from theintent request                  //  
 //////////////////////////////////////////////////////
 function postIntentReportCreationEvent(event) {
-  const url = `http://${server}:8092/tmf-api/intent/v4/listener/intentReportCreateEvent`
+  const url = `http://${server}:${serverPort}/tmf-api/intent/v4/listener/intentReportCreateEvent`
 //  const url = `http://localhost:8092/tmf-api/intent/v4/listener/intentReportCreateEvent`
   //console.log('XXX: In 23 '+url);
     
@@ -193,12 +195,17 @@ async function process_intents (expression,id,version) {
 }
 
 async function insert_intents (intents,expectations,objectives,hierarchy,version) {
+  try {
   const response = await persist.processIntents (intents)
   .then ((result) => persist.processExpectations (expectations))
   .then ((result) => persist.processObjectives (objectives))
   .then ((result) => persist.queryHierarchy (version))
   .then ((result) => persist.hierarchyResults(result))  
-  .then ((parent) => persist.processHierarchy(parent,hierarchy)) 
+  .then ((parent) => persist.processHierarchy(parent,hierarchy))
+  }
+   catch (err) {
+    console.log(err)
+   }
 
 }
 function process_ACTN (name,id,version) {

@@ -3,7 +3,7 @@
 @prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
-@prefix idan: <http://www.example.org/IDAN3#> .
+@prefix idan: <http://www.example.org/IDAN4#> .
 @prefix t:    <http://www.w3.org/2006/time#> .
 @prefix logi:  <http://tio.models.tmforum.org/tio/v3.2.0/LogicalOperators#> .
 @prefix quan: <http://tio.models.tmforum.org/tio/v3.2.0/QuantityOntology#> .
@@ -18,10 +18,10 @@
 #
 # This intent report is sent on acceptance of the intent 
 # 
-idan:IS1Probe1_Construction_Intent_Accepted
+idan:IS1_Probe1_Gameslice_Intent_Accepted
   a icm:IntentReport ;
   rdfs:comment "'Intent Report after accepting the intent'" ;
-  icm:about idan:IS1_Construction_Probe_1 ;
+  icm:about idan:IS1_Gameslice_Probe_1 ;
   # put in the live timestamp from the time the report is created:
     icm:reportTimestamp            date_to_be_generated^^xsd:dateTime ;
   icm:reportHandlingState icm:StateAccepted ;
@@ -35,7 +35,7 @@ idan:IS1Probe1_Construction_Intent_Accepted
 
 idan:S1R1E1_property
   a icm:ExpectationReport ;
-  icm:reportsAbout idan:ES1_energy_consumption_expectation ;
+  icm:reportsAbout idan:ES1_Gameslice_consumption_expectation ;
 .
 
          

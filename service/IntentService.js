@@ -97,7 +97,7 @@ exports.createIntent = async function(req, res, next) {
 
 /* XXXXXXXXXXXXX Ericsson IRC - Start  XXXXXXXXXXXXXXXx*/
 // calls the service intent handler for creating intent
-            if ((expression.indexOf("S1")>0) || (expression.indexOf("S2")>0) || (expression.indexOf("S3")>0)){ // check whether it's a service intent
+            if ((expression.indexOf("S1")>0) || (expression.indexOf("S2")>0) || (expression.indexOf("S3")>0) ){ // check whether it's a service intent
               serviceIntentHandler.processIntent(req);
             }
 /* XXXXXXXXXXXXX Ericsson IRC - End  XXXXXXXXXXXXXXXx*/

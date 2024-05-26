@@ -54,16 +54,15 @@ exports.processIntent = function(req) {
   var serviceOrder;
   var name;
   var probe=false;
-  if (expression.indexOf("Probe_1") > 0) {
-    serviceOrder = '';
-    name = 'Probe_1'
-    probe=true;
-  } else if (expression.indexOf("Probe_2") > 0) {
-    serviceOrder = '';
-    name = 'Probe_2'
-    probe=true;
-  }  else if (expression.indexOf("S1") > 0) {
-    serviceOrder = 'service_order_HELMET_SERVICE_CREATE.json';
+
+  if (expression.indexOf("IS1_Gameslice_Probe_1") > 0) {
+    serviceOrder = 'service_order_SLICE_SERVICE_Probe_Fail.json';
+    name = 'Probe_1;'
+  }  else if (expression.indexOf("IS1_Gameslice_Probe_2") > 0) {
+    serviceOrder = 'service_order_SLICE_SERVICE_Probe_Success.json';
+    name = 'Probe_2;'
+  }  else if (expression.indexOf("IS1") > 0) {
+    serviceOrder = 'service_order_SLICE_SERVICE_CREATE.json';
     name = 'S1;'
   }
   else if (expression.indexOf("S2") > 0) {
@@ -74,10 +73,16 @@ exports.processIntent = function(req) {
     serviceOrder = 'service_order_CSP_USAGE_CONDITION_CREATE.json';
     name = 'S3;'
   }
-  else if (expresion.indexOf("IR1_41_RAN_Probe") > 0) {
-    serviceOrder = 'service_order_SLICE_SERVICE_Probe_Success.json';
-    name = 'IR1_41;'
+  else if (expression.indexOf("Probe_1") > 0) {
+    serviceOrder = '';
+    name = 'Probe_1'
+    probe=true;
+  } else if (expression.indexOf("Probe_2") > 0) {
+    serviceOrder = '';
+    name = 'Probe_2'
+    probe=true;
   }
+
 
   console.log("serviceOrder json is: " + serviceOrder);
 
@@ -113,16 +118,18 @@ function sendCreateServiceOrder(id,serviceOrder) {
     var createOrderJson = JSON.parse(createOrder);
     //add the service intent id
     var i = 1
-    createOrderJson.orderItems.forEach(orderItem=>{
-      orderItem.service.publicIdentifier = id+`_${i}`;
-      if (orderItem.service.serviceRelationship[0] != undefined) {
-        if (orderItem.service.serviceRelationship[0].service.publicIdentifier.indexOf("serviceIntentId_CONNECTIVITY")>=0) {
-          orderItem.service.serviceRelationship[0].service.publicIdentifier = id+'_1'
-          orderItem.service.serviceRelationship[0].service.name = id+'_1 (' + id + '_1)'
-        }
-      }
-      i=i+1
-    })
+    if(createOrderJson.orderItems!=undefined) {
+        createOrderJson.orderItems.forEach(orderItem=>{
+          orderItem.service.publicIdentifier = id+`_${i}`;
+          if (orderItem.service.serviceRelationship[0] != undefined) {
+            if (orderItem.service.serviceRelationship[0].service.publicIdentifier.indexOf("serviceIntentId_CONNECTIVITY")>=0) {
+              orderItem.service.serviceRelationship[0].service.publicIdentifier = id+'_1'
+              orderItem.service.serviceRelationship[0].service.name = id+'_1 (' + id + '_1)'
+            }
+          }
+          i=i+1
+        })
+    }
 
 //    if ((serviceIntentParams.quality == 'Premium') && (serviceIntentParams.availability >= 0.99)) {
 //      createOrderJson.orderItems[0].service.characteristics[1].value = "10";
@@ -200,7 +207,12 @@ function extractParamsFromIntent(expression, type) {
     $rdf.parse(expression, store, uri, mimeType);
 
     var intentName = store.each(undefined, CEM('layer'), EX('service'));
-    serviceIntentParams.intentName = intentName[0].value;
+    if (intentName[0] == undefined) {
+        serviceIntentParams.intentName='';
+    }
+    else {
+        serviceIntentParams.intentName = intentName[0].value;
+    }
 
     var networkUtilObservationObject = store.each(undefined, ICM('latestValueOf'), MET('NetworkUtilization'));
     var networkUtilTriplesSubject = store.each(undefined, ICM('observation'), networkUtilObservationObject[0]);

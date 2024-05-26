@@ -1,0 +1,125 @@
+@prefix icm:  <http://tio.models.tmforum.org/tio/v3.2.0/IntentCommonModel#> .
+@prefix imo:  <http://tio.models.tmforum.org/tio/v3.2.0/IntentManagmentOntology#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix idan: <http://www.example.org/IDAN4#> .
+@prefix t:    <http://www.w3.org/2006/time#> .
+@prefix logi:  <http://tio.models.tmforum.org/tio/v3.2.0/LogicalOperators#> .
+@prefix quan: <http://tio.models.tmforum.org/tio/v3.2.0/QuantityOntology#> .
+@prefix set:  <http://tio.models.tmforum.org/tio/v3.2.0/SetOperators#> .
+@prefix fun:  <http://tio.models.tmforum.org/tio/v3.2.0/FunctionOntology#> .
+@prefix ui: <http://www..example.org/ui#> .
+@prefix mf: <http://www..example.org/mf#> .
+@prefix cem: <http://tio.labs.tmforum.org/tio/v1.0.0/CatalystExtensionModel#> .
+@prefix   iv: <http://tio.models.tmforum.org/tio/v3.2.0/IntentValidity#> .
+
+#intent 
+idan:IS1_Gameslice_Probe_1
+  a icm:Intent ;
+  cem:layer idan:service ;
+  imo:intentOwner idan:Service ;
+  rdfs:comment "'Business Intent for Enterprise Gameslice'" ;
+  icm:hasExpectation idan:ES1_gameslice_expectation_Probe_1,
+                       idan:ES1_gameslice_property_Probe_1,  
+                        idan:ES1_reporting_expectation_Probe_1
+.
+
+idan:ES1_gameslice_expectation_Probe_1
+  a icm:DeliveryExpectation ;
+    icm:target idan:SliceServiceProfile ;
+.
+
+# targets
+idan:SliceServiceProfile
+  a icm:Target ;
+  icm:allOf [ rdfs:member idan:GameSliceService]
+.
+
+# we need certain performance/QoE properties for the service
+idan:ES1_gameslice_property_Probe_1
+  a icm:PropertyExpectation ;
+  icm:target idan:SliceServiceProfile ;
+  logi:allOf [rdfs:member idan:CS1_Transport ;
+               rdfs:member idan:CS1_RAN ;
+               rdfs:member idan:CS1_Cloud               ]
+.
+
+# conditions
+
+idan:CS1_Transport
+  a icm:Condition ;
+  rdfs:label "Transport" ;
+  idan:Bandwidth [ quan:greater
+                 [ rdf:value "10"^^xsd:decimal ;
+                   icm:unit80000 "'Mbps'"];
+  idan:UserCount [ quan:equal
+                 [ rdf:value "100"^^xsd:integer] 
+               ];
+  idan:Location [ quan:equal
+                 [ rdf:value "houston"^^xsd:string] 
+               ];
+  idan:Service [ quan:equal
+                 [ rdf:value "gamingslice"^^xsd:string] 
+               ];
+  idan:Latency [ quan:smaller
+                 [ rdf:value "25"^^xsd:decimal ;
+                   icm:unit80000 "'ms'" ]
+               ] ;
+  idan:Servicetype [ quan:equal
+                 [ rdf:value "ARVR"^^xsd:string] 
+               ];   
+  idan:Servicefamily [ quan:equal
+                 [ rdf:value "HDVideo"^^xsd:string] 
+               ];                           
+  idan:CustomerName [ quan:equal
+                 [ rdf:value "GameArcadeinc"^^xsd:string] 
+               ];
+  idan:Accessmode [ quan:equal
+                 [ rdf:value "5G"^^xsd:string] 
+               ];               
+  idan:Servicequality [ quan:equal
+                 [ rdf:value "HD1080"^^xsd:string] 
+               ];
+  idan:startDate [ quan:equal
+                 [ rdf:value "3/29/2024"^^xsd:string] 
+               ];
+  idan:endDate [ quan:equal
+                 [ rdf:value "5/29/2024"^^xsd:string] 
+               ];               
+.
+
+idan:CS1_RAN
+  a icm:Condition ;
+  rdfs:label "" ;
+.
+idan:CS1_Cloud
+  a icm:Condition ;
+  rdfs:label "" ;
+.
+
+# reporting
+
+# event for time-based reporting. Triggereing every 5 minutes
+idan:EventS1
+  a rdfs:Class ;
+  rdfs:subClassOf imo:Event ;
+  logi:if [ t:after [imo:timeOfLastEvent [rdfs:member idan:EventS1 ;
+                                              rdfs:member idan:IS1_Gameslice_Probe_1 ]]  ,
+                         [t:hasDuration idan:5M ] ;
+                t:before [ t:hasBeginning imo:Now ] ;
+         ] ;
+  imo:eventFor idan:IS1_Gameslice_Probe_1
+.
+
+idan:ES1_reporting_expectation_Probe_1
+  a icm:ReportingExpectation ;
+  icm:target idan:IS1_Gameslice_Probe_1;
+  icm:reportDestination [ rdfs:member idan:Operations ] ;
+  icm:reportTriggers [ rdfs:member imo:IntentRejected ; 
+                       rdfs:member imo:IntentAccepted ;
+                       rdfs:member imo:IntentDegrades ;
+                       rdfs:member imo:IntentComplies ;
+                       rdfs:member imo:IntentRemoval ;
+                       rdfs:member idan:EventS1 ]
+.

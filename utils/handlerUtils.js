@@ -636,6 +636,9 @@ async function processIntentReportEvent(event,req) {
 
     console.log('Posted report: '+event.event.intentReport.name)
   })
+      .catch((error) => {
+        console.error('Error in processIntentReportEvent function', error);
+      });
 }
 
 ////////////////////////////////////////////////////////
@@ -765,6 +768,11 @@ function postIntent(name,filename,req) {
     }
     
       var xhttp = new XMLHttpRequest();
+
+      xhttp.addEventListener('error', function() {
+         console.log( 'an error occurred while waiting for a XHTTP response ');
+      });
+
       xhttp.onreadystatechange = function() {
        if (this.readyState == 4 && this.status == 200) {
            //do nothing for now
@@ -823,7 +831,9 @@ mongoUtils.connect().then(db => {
            //alert(this.responseText);
         }
       };
-    var url = 'http://localhost:8092/tmf-api/intent/v4/intent/'+id;
+
+    const serverPort = process.env.SERVER_PORT!==undefined ? process.env.SERVER_PORT:8092;
+    var url = 'http://localhost:' + serverPort + '/tmf-api/intent/v4/intent/'+id;
     console.log('URL: '+url);
     xhttp.open("PATCH", url, true);
     xhttp.setRequestHeader("Content-Type", "application/json");
@@ -918,7 +928,9 @@ async function retrieveIntentByName (nameInReport,id) {
   console.log("Retrieving Intent: "+name+' '+id)
   return await mongoUtils.connect().then(db => {
     return db.collection('Intent').find(query.criteria, query.options).toArray()
-  })
+  })    .catch((err) => {
+          console.log("failed Retrieving Intent: "+name + ' ' + id + err.message);
+        });
 
 
 };

@@ -3,7 +3,7 @@
 @prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
-@prefix idan: <http://www.example.org/IDAN3#> .
+@prefix idan: <http://www.example.org/IDAN4#> .
 @prefix t:    <http://www.w3.org/2006/time#> .
 @prefix logi:  <http://tio.models.tmforum.org/tio/v3.2.0/LogicalOperators#> .
 @prefix quan: <http://tio.models.tmforum.org/tio/v3.2.0/QuantityOntology#> .
@@ -19,10 +19,10 @@
 # This intent report is sent on acceptance of the service intnet to the intnet 
 # manager on business level
 # 
-idan:IS1Probe1_Construction_Intent_Degraded
+idan:IS1Probe1_Gameslice_Intent_Degraded
   a icm:IntentReport ;
   rdfs:comment "'Intent Report after compliant'" ;
-  icm:about idan:IS1_Construction_Probe_1 ;
+  icm:about idan:IS1_Gameslice_Probe_1 ;
   # put in the live timestamp from the time the report is created:
     icm:reportTimestamp            date_to_be_generated^^xsd:dateTime ;
   icm:reportHandlingState icm:StateDegraded ;
@@ -35,7 +35,7 @@ idan:IS1Probe1_Construction_Intent_Degraded
 
 idan:S1R2E1_property
     a icm:PropertyExpectationReport ; 
-    icm:about idan:ES1_helmet_property_Probe_1 ;
+    icm:about idan:ES1_gameslice_property_Probe_1 ;
     icm:result false ; 
     icm:resultFrom idan:CR1 .
 
