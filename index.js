@@ -14,9 +14,10 @@ const {TError, TErrorEnum, sendError} = require('./utils/errorUtils');
 const app = require('connect')();
 const swaggerTools = require('swagger-tools');
 
-const serverPort = 8092;
+const serverPort = process.env.SERVER_PORT!==undefined ? process.env.SERVER_PORT:8092;
 
 const intentReportInterval = 60; // seconds
+
 
 // Correct the url in swagger-ui-dist that points to some demo (like the petstore)
 // And add additional useful options
@@ -72,7 +73,7 @@ swaggerTools.initializeMiddleware(swaggerDoc, function (middleware) {
 
   // Monitor issues that are reported by the SA in issue repo of graphDB
   var timerId = setTimeout(function sendReport() {
-    console.log("intentReportInterval expired, sending new report");
+    //console.log("intentReportInterval expired, sending new report");
     timerId = setTimeout(sendReport, intentReportInterval * 1000);
     handlerUtils23.generateReport();
 

@@ -87,17 +87,22 @@ if (req.body.name.indexOf('ACTN')>0) {
   }
 
   // IDAN4 start
-  if (expression.indexOf("IR1_4_RAN_Probe") >= 0) {
-    reports = ['IR14R1Probe_RAN_Intent_Accepted','R14R3Probe_Intent_Degraded']
+  console.log("===> Resource handling");
+  console.log(expression);
+  console.log("=============================== " + expression.indexOf("IR1_4_RAN_Probe") + " " + expression.indexOf("10000"));
+  if (expression.indexOf("IR1_4_RAN_Probe") >= 0 && expression.indexOf("10000")>0) { //Probe failed
+    console.log("===> Resource probe failed");
+    reports = ['R14R1Probe_Intent_Accepted','R14R3Probe_Intent_Degraded']
     handlerUtils23.addGenerateIntentReport('R14R3Probe_Intent_Degraded',req)
   }
 
-  if (expression.indexOf("IR1_41_RAN_Probe") >= 0) {
-    reports = ['IR14R1Probe_RAN_Intent_Accepted','R14R2Probe_Intent_Compliant']
+  if (expression.indexOf("IR1_4_RAN_Probe") >= 0 && expression.indexOf("10000")<0) { //Probe success
+    console.log("===> Resource probe success");
+    reports = ['R14R1Probe_Intent_Accepted','R14R2Probe_Intent_Compliant']
     handlerUtils23.addGenerateIntentReport('R14R2Probe_Intent_Compliant',req)
   }
 
-  if (expression.indexOf("IR1_4_RAN") >= 0) {
+  if (expression.indexOf("IR1_4_RAN") >= 0 && expression.indexOf("IR1_4_RAN_Probe")<0) {
     reports = ['R14R1_Intent_Accepted','R14R2_Intent_Compliant']
     handlerUtils23.addGenerateIntentReport('R14R2_Intent_Compliant',req)
   }

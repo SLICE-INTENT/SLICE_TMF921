@@ -103,9 +103,9 @@
                     }
                 ],
                 "serviceSpecification": {
-                    "id": "608b2ef3-9b15-41ea-abb1-abcd1b8cec6f",
-                    "invariantID": "51513c0b-233c-471f-9108-d237b153feae",
-                    "version": "41.0.0"
+                    "id": "8ef147ed-a51d-419f-8739-e7000a3de1e1",
+                    "invariantID": "9f20c8b6-b437-4630-852a-18abacf4e358",
+                    "version": "1.0.0"
                 }
             }
         }

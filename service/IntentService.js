@@ -84,24 +84,25 @@ exports.createIntent = async function(req, res, next) {
 
             var expression = handlerUtils.getExpression(req);
 
-/* XXXXXXXXXXXXX Huawei IRC - Start  XXXXXXXXXXXXXXXx*/
-// calls the intent handler for the knowledge extraction and storage
-            if ((expression.indexOf("R1")>0) || (expression.indexOf("R2")>0) || (expression.indexOf("R3")>0) || (expression.indexOf("IR1_4")>0) ){ // check whether it's a resource intent
-              intentHandler.processIntent(req);
-            }
-//for the time being using the common handler for the biz intent
-            if (expression.indexOf("B1")>0){ // check whether it's a resource intent
-              businessintentHandler.processIntent(req);
-            }
-/* XXXXXXXXXXXXX Huawei IRC - End  XXXXXXXXXXXXXXXx*/
+            if (expression!=undefined) {
+    /* XXXXXXXXXXXXX Huawei IRC - Start  XXXXXXXXXXXXXXXx*/
+    // calls the intent handler for the knowledge extraction and storage
+                if ((expression.indexOf("R1")>0) || (expression.indexOf("R2")>0) || (expression.indexOf("R3")>0) || (expression.indexOf("IR1_4")>0) ){ // check whether it's a resource intent
+                  intentHandler.processIntent(req);
+                }
+    //for the time being using the common handler for the biz intent
+                if (expression.indexOf("B1")>0){ // check whether it's a resource intent
+                  businessintentHandler.processIntent(req);
+                }
+    /* XXXXXXXXXXXXX Huawei IRC - End  XXXXXXXXXXXXXXXx*/
 
-/* XXXXXXXXXXXXX Ericsson IRC - Start  XXXXXXXXXXXXXXXx*/
-// calls the service intent handler for creating intent
-            if ((expression.indexOf("S1")>0) || (expression.indexOf("S2")>0) || (expression.indexOf("S3")>0) ){ // check whether it's a service intent
-              serviceIntentHandler.processIntent(req);
+    /* XXXXXXXXXXXXX Ericsson IRC - Start  XXXXXXXXXXXXXXXx*/
+    // calls the service intent handler for creating intent
+                if ((expression.indexOf("S1")>0) || (expression.indexOf("S2")>0) || (expression.indexOf("S3")>0) ){ // check whether it's a service intent
+                  serviceIntentHandler.processIntent(req);
+                }
+    /* XXXXXXXXXXXXX Ericsson IRC - End  XXXXXXXXXXXXXXXx*/
             }
-/* XXXXXXXXXXXXX Ericsson IRC - End  XXXXXXXXXXXXXXXx*/
-
 
           })
           .catch((error) => {

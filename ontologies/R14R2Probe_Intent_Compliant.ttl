@@ -1,3 +1,6 @@
+########################################################################################
+####developed by Verizon - Ganesh Bathivi, Anandh Sankaralingam, Mohanraj Srinivasan####
+########################################################################################
 @prefix icm:  <http://tio.models.tmforum.org/tio/v3.2.0/IntentCommonModel#> .
 @prefix imo:  <http://tio.models.tmforum.org/tio/v3.2.0/IntentManagmentOntology#> .
 @prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
@@ -16,13 +19,13 @@
 
 ##### Service Intent Report ###################################################
 #
-# This intent report is sent on acceptance of the service intnet to the intnet 
+# This intent report is sent on acceptance of the service intnet to the intnet
 # manager on business level
-# 
+#
 idan:IR2Probe_RAN_Intent_Compliant
   a icm:IntentReport ;
   rdfs:comment "'Intent Report after Accepted'" ;
-  icm:about idan:IR1_41_RAN_Probe ;
+  icm:about idan:IR1_4_RAN_Probe ;
   # put in the live timestamp from the time the report is created:
     icm:reportTimestamp            date_to_be_generated^^xsd:dateTime ;
   icm:reportHandlingState icm:StateCompliant ;
@@ -30,34 +33,34 @@ idan:IR2Probe_RAN_Intent_Compliant
   icm:reportNumber 2 ;
   cem:layer idan:service ;
   icm:hasExpectationReport idan:S1R2E1_property ,
-                           idan:S1R2E2_reporting ; 
+                           idan:S1R2E2_reporting ;
 .
 
 idan:S1R2E1_property
-    a icm:PropertyExpectationReport ; 
+    a icm:PropertyExpectationReport ;
     icm:about idan:ES1_Slice_property_Probe ;
-    icm:result false ; 
+    icm:result false ;
     icm:resultFrom idan:CR2_RAN .
 
 idan:S1R2E2_reporting
-    a icm:ReportingExpectationReport ; 
+    a icm:ReportingExpectationReport ;
     icm:about idan:ES1_Slice_reporting_expectation_Probe ;
     icm:result false .
 
 idan:CR2_RAN
-    a icm:ConditionReport ; 
-    icm:about idan:CS1_RAN ; 
-    icm:observed [ idan:Bandwidth 100;
-                    idan:Delay 25 ];
+    a icm:ConditionReport ;
+    icm:about idan:CS1_RAN ;
+    icm:observed [ idan:BandwidthPerSlice 12;
+                    idan:RanLatency 26 ];
     icm:result false .
-	
-	
+
+
 idan:S1R2E1_property
   a icm:ExpectationReport ;
-  icm:reportsAbout idan:ES1_energy_consumption_expectation ;
+  icm:reportsAbout idan:ES1_Slice_Utilization_expectation ;
   icm:compliant [ a icm:ConditionReport ;
                  icm:reportsAbout idan:ES1_slice_profile ;
-				 icm:SliceProfile [icm:observed [ icm:latestValue 9.8 ;
+				 icm:SliceProfile [icm:observed [ icm:latestValue 12 ;
                                                    icm:unit idan:ES1_unit ;
 									             ];
 									];
