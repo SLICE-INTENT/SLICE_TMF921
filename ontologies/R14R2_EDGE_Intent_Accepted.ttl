@@ -17,60 +17,32 @@
 @prefix cem: <http://tio.labs.tmforum.org/tio/v1.0.0/CatalystExtensionModel#> .
 @prefix   iv: <http://tio.models.tmforum.org/tio/v3.2.0/IntentValidity#> .
 
-##### Service Intent Report ###################################################
+##### Service Intent Report ##########################################################
 #
-# This intent report is sent on acceptance of the service intnet to the intnet 
-# manager on business level
+# This intent report is sent on acceptance of the intent 
 # 
-idan:R14R3Probe_RAN_Intent_Degraded
+idan:IR14R1_EDGE_Intent_Accepted
   a icm:IntentReport ;
-  rdfs:comment "'Intent Report after compliant'" ;
-  icm:about idan:IR1_4_RAN_ProbeFail ;
+  rdfs:comment "'Intent Report after accepting the intent'" ;
+  icm:about idan:IR1_4_EDGE ;
   # put in the live timestamp from the time the report is created:
     icm:reportTimestamp            date_to_be_generated^^xsd:dateTime ;
-  icm:reportHandlingState icm:StateDegraded ;
+  icm:reportHandlingState icm:StateAccepted ;
   icm:updateState icm:StateNoUpdate ;
-  icm:reportNumber 2 ;
-  cem:layer idan:service ;
-  icm:hasExpectationReport idan:S1R2E1_property ,
-                           idan:S1R2E2_reporting ; 
+  icm:reportNumber 1 ;
+  cem:layer idan:resource ;
+  icm:hasExpectationReport idan:R14R1E1_property ,
+                           idan:R14R1E2_reporting ; 
 .
 
-idan:S1R2E1_property
-    a icm:PropertyExpectationReport ; 
-    icm:about idan:ES1_Slice_property_Probe ;
-    icm:result false ; 
-    icm:resultFrom idan:CR3 .
 
-idan:S1R2E2_reporting
-    a icm:ReportingExpectationReport ; 
-    icm:about idan:ES1_Slice_reporting_expectation_Probe ;
-    icm:result false .
-
-idan:CR3
-    a icm:ConditionReport ; 
-    icm:about idan:CS1_RAN ; 
-    icm:observed [ idan:BandwidthPerSlice 9;
-                    idan:RanLatency 24 ];
-    icm:result false .
-	
-	
-idan:S1R2E1_property
+idan:R14R1E1_property
   a icm:ExpectationReport ;
-  icm:reportsAbout idan:ES1_Slice_expectation_Probe ;
-  icm:compliant [ a icm:ConditionReport ;
-                 icm:reportsAbout idan:ES1_slice_profile ;
-				 icm:SliceProfile [icm:observed [ icm:latestValue 9.8 ;
-                                                   icm:unit idan:ES1_unit ;
-									             ];
-									];
-				 icm:reason icm:ReasonConditionTrue ;
-			    ] 
+  icm:reportsAbout idan:ES1_Slice_property_Probe ;
 .
-			   
-##### Reporting Expectation Report ############################################
-#
-idan:S1R2E2_reporting
+
+         
+idan:R14R1E2_reporting
   a icm:ExpectationReport ;
   icm:reportsAbout idan:ES1_Slice_reporting_expectation ;
   icm:reportingIntervalRemaining [ a t:Duration ;

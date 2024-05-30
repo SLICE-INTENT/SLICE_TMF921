@@ -92,7 +92,7 @@ if (req.body.name.indexOf('ACTN')>0) {
   console.log("=============================== " + expression.indexOf("IR1_4_RAN_Probe") + " " + expression.indexOf("10000"));
   if (expression.indexOf("IR1_4_RAN_Probe") >= 0 && expression.indexOf("10000")>0) { //Probe failed
     console.log("===> Resource probe failed");
-    reports = ['R14R1Probe_Intent_Accepted','R14R3Probe_Intent_Degraded']
+    reports = ['R14R1ProbeFail_Intent_Accepted','R14R3Probe_Intent_Degraded']
     handlerUtils23.addGenerateIntentReport('R14R3Probe_Intent_Degraded',req)
   }
 
@@ -106,6 +106,16 @@ if (req.body.name.indexOf('ACTN')>0) {
     reports = ['R14R1_Intent_Accepted','R14R2_Intent_Compliant']
     handlerUtils23.addGenerateIntentReport('R14R2_Intent_Compliant',req)
   }
+  if (expression.indexOf("IR1_4_EDGE") >= 0 && expression.indexOf("IR1_4_EDGE_Probe")<0) {
+    reports = ['R14R2_EDGE_Intent_Accepted','R14R2_EDGE_Intent_Compliant']
+    handlerUtils23.addGenerateIntentReport('R14R2_EDGE_Intent_Compliant',req)
+  }
+
+  if (expression.indexOf("IR1_4_EDGE_Probe")>0) {
+    reports = ['R14R2Probe_EDGE_Intent_Accepted','R14R2Probe_EDGE_Intent_Compliant']
+    handlerUtils23.addGenerateIntentReport('R14R2Probe_EDGE_Intent_Compliant',req)
+  }
+
   // IDAN4 end
   
 

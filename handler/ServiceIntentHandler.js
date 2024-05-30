@@ -163,6 +163,7 @@ function createIntentReport(req,name,id) {
   reports = ['S1Probe2R1_Intent_Accepted','S1Probe2R1_Intent_Compliant']
  handlerUtils23.addGenerateIntentReport('S1Probe2R1_Intent_Compliant',req)
 } else if (name.indexOf("S1") >= 0) {
+
     reports = ['S1R1_Intent_Accepted','S1R2_Intent_Compliant']
     children = [...S1_children]
  }

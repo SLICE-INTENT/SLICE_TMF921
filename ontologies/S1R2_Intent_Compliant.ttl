@@ -3,7 +3,7 @@
 @prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
-@prefix idan: <http://www.example.org/IDAN3#> .
+@prefix idan: <http://www.example.org/IDAN4#> .
 @prefix t:    <http://www.w3.org/2006/time#> .
 @prefix logi:  <http://tio.models.tmforum.org/tio/v3.2.0/LogicalOperators#> .
 @prefix quan: <http://tio.models.tmforum.org/tio/v3.2.0/QuantityOntology#> .
@@ -47,8 +47,7 @@ idan:S1R2E1_property
 			    ] 
 .
 			   
-##### Reporting Expectation Report ############################################
-#
+
 idan:S1R2E2_reporting
   a icm:ExpectationReport ;
   icm:reportsAbout idan:ES1_reporting_expectation ;

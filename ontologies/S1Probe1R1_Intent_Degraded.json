@@ -1,0 +1,24 @@
+{
+    "statusChangeDate": "2022-07-23T04:56:07.000+00:00",
+    "expression": {
+        "iri": "http://tio.models.tmforum.org/tio/v3.2.0/IntentCommonModel/",
+        "@baseType": "Expression",
+        "@type": "TurtleExpression",
+        "expressionLanguage": "Turtle",
+        "expressionValue": "@prefix icm:  <http://tio.models.tmforum.org/tio/v3.2.0/IntentCommonModel#> .\n@prefix imo:  <http://tio.models.tmforum.org/tio/v3.2.0/IntentManagmentOntology#> .\n@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .\n@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .\n@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .\n@prefix idan: <http://www.example.org/IDAN4#> .\n@prefix t:    <http://www.w3.org/2006/time#> .\n@prefix logi:  <http://tio.models.tmforum.org/tio/v3.2.0/LogicalOperators#> .\n@prefix quan: <http://tio.models.tmforum.org/tio/v3.2.0/QuantityOntology#> .\n@prefix set:  <http://tio.models.tmforum.org/tio/v3.2.0/SetOperators#> .\n@prefix fun:  <http://tio.models.tmforum.org/tio/v3.2.0/FunctionOntology#> .\n@prefix ui: <http://www..example.org/ui#> .\n@prefix mf: <http://www..example.org/mf#> .\n@prefix cem: <http://tio.labs.tmforum.org/tio/v1.0.0/CatalystExtensionModel#> .\n@prefix   iv: <http://tio.models.tmforum.org/tio/v3.2.0/IntentValidity#> .\n\n##### Service Intent Report ###################################################\n#\n# This intent report is sent on acceptance of the service intnet to the intnet \n# manager on business level\n# \nidan:IS1Probe1_Gameslice_Intent_Degraded\n  a icm:IntentReport ;\n  rdfs:comment "'Intent Report after compliant'" ;\n  icm:about idan:IS1_Gameslice_Probe_1 ;\n  # put in the live timestamp from the time the report is created:\n    icm:reportTimestamp            date_to_be_generated^^xsd:dateTime ;\n  icm:reportHandlingState icm:StateDegraded ;\n  icm:updateState icm:StateNoUpdate ;\n  icm:reportNumber 2 ;\n  cem:layer idan:service ;\n  icm:hasExpectationReport idan:S1R2E1_property ,\n                           idan:S1R2E2_reporting ; \n.\n\nidan:S1R2E1_property\n    a icm:PropertyExpectationReport ; \n    icm:about idan:ES1_gameslice_property_Probe_1 ;\n    icm:result false ; \n    icm:resultFrom idan:CR1 .\n\nidan:S1R2E2_reporting\n    a icm:ReportingExpectationReport ; \n    icm:about idan:ES1_reporting_expectation_Probe_1 ;\n    icm:result false .\n\nidan:CR1\n    a icm:ConditionReport ; \n    icm:about idan:CS1_Transport ; \n    icm:observed [ idan:Bandwidth 9435;\n                    idan:Delay 0.95 ];\n    icm:result false .\n	\n	\nidan:S1R2E1_property\n  a icm:ExpectationReport ;\n  icm:reportsAbout idan:ES1_energy_consumption_expectation ;\n  icm:compliant [ a icm:ConditionReport ;\n                 icm:reportsAbout idan:ES1_energy_profile ;\n				 icm:EnergyProfile [icm:observed [ icm:latestValue 9.8 ;\n                                                   icm:unit idan:EC1_unit ;\n									             ];\n									];\n				 icm:reason icm:ReasonConditionTrue ;\n			    ] \n.\n			   \n##### Reporting Expectation Report ############################################\n#\nidan:S1R2E2_reporting\n  a icm:ExpectationReport ;\n  icm:reportsAbout idan:ES1_reporting_expectation ;\n  icm:reportingIntervalRemaining [ a t:Duration ;\n                                   t:numericDuration idan:5M \n                            ] ;\n.\n",
+        "@schemaLocation": "https://mycsp.com:8080/tmf-api/schema/Common/TurtleExpression.schema.json"
+    },
+    "lifecycleStatus": "Created",
+    "@baseType": "Intent",
+    "validFor": {
+        "startDateTime": "2022-04-12T23:20:50.52Z",
+        "endDateTime": "2023-04-12T23:20:50.52Z"
+    },
+    "@type": "Intent",
+    "lastUpdate": "2022-01-23T04:56:07.000+00:00",
+    "name": "IS1Probe1_Gameslice_Intent_Degraded",
+    "description": "IS1Probe1_Gameslice_Intent_Degraded",
+    "creationDate": "2022-01-23T04:56:07.000+00:00",
+    "@schemaLocation": "https://mycsp.com:8080/tmf-api/schema/Common/TurtleExpression.schema.json",
+    "version": "1"
+}

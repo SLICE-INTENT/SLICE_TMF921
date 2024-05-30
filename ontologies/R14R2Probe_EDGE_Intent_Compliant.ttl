@@ -1,6 +1,3 @@
-########################################################################################
-####developed by Verizon - Ganesh Bathivi, Anandh Sankaralingam, Mohanraj Srinivasan####
-########################################################################################
 @prefix icm:  <http://tio.models.tmforum.org/tio/v3.2.0/IntentCommonModel#> .
 @prefix imo:  <http://tio.models.tmforum.org/tio/v3.2.0/IntentManagmentOntology#> .
 @prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
@@ -22,13 +19,13 @@
 # This intent report is sent on acceptance of the service intnet to the intnet 
 # manager on business level
 # 
-idan:R14R3Probe_RAN_Intent_Degraded
+idan:IR2Probe_EDGE_Intent_Compliant
   a icm:IntentReport ;
-  rdfs:comment "'Intent Report after compliant'" ;
-  icm:about idan:IR1_4_RAN_ProbeFail ;
+  rdfs:comment "'Intent Report after Accepted'" ;
+  icm:about idan:IR1_4_EDGE_Probe ;
   # put in the live timestamp from the time the report is created:
     icm:reportTimestamp            date_to_be_generated^^xsd:dateTime ;
-  icm:reportHandlingState icm:StateDegraded ;
+  icm:reportHandlingState icm:StateCompliant ;
   icm:updateState icm:StateNoUpdate ;
   icm:reportNumber 2 ;
   cem:layer idan:service ;
@@ -40,24 +37,24 @@ idan:S1R2E1_property
     a icm:PropertyExpectationReport ; 
     icm:about idan:ES1_Slice_property_Probe ;
     icm:result false ; 
-    icm:resultFrom idan:CR3 .
+    icm:resultFrom idan:CR2_EDGE .
 
 idan:S1R2E2_reporting
     a icm:ReportingExpectationReport ; 
     icm:about idan:ES1_Slice_reporting_expectation_Probe ;
     icm:result false .
 
-idan:CR3
+idan:CR2_EDGE
     a icm:ConditionReport ; 
-    icm:about idan:CS1_RAN ; 
-    icm:observed [ idan:BandwidthPerSlice 9;
-                    idan:RanLatency 24 ];
+    icm:about idan:CS1_EDGE ; 
+    icm:observed [ idan:Bandwidth 100;
+                    idan:Delay 25 ];
     icm:result false .
 	
 	
 idan:S1R2E1_property
   a icm:ExpectationReport ;
-  icm:reportsAbout idan:ES1_Slice_expectation_Probe ;
+  icm:reportsAbout idan:ES1_energy_consumption_expectation ;
   icm:compliant [ a icm:ConditionReport ;
                  icm:reportsAbout idan:ES1_slice_profile ;
 				 icm:SliceProfile [icm:observed [ icm:latestValue 9.8 ;

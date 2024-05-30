@@ -224,7 +224,8 @@ function extractTriplesandKG (expression,action,type,name) {
 //    return null;
   })
  } catch (err) {
-//   console.log(err);
+   console.log("======> extractTriplesandKG Error inserting entry for graph: " + name);
+   console.log(err);
  };
 
 
@@ -563,7 +564,9 @@ function sendIntentReport(name,filename,req) {
 
  //   console.log(data);
   //2. insert report in grapbdb
+  console.log('=====> Posting report before extractTriplesandKG: '+name)
   extractTriplesandKG(data,`insert`,'text/turtle',name);
+  console.log('=====> Posting report after extractTriplesandKG: '+name)
 
  //3. insert report into mongodb and send notification
    const resourceType = 'IntentReport';

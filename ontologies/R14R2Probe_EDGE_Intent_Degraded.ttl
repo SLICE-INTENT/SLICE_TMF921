@@ -1,5 +1,5 @@
 ########################################################################################
-####developed by Verizon - Ganesh Bathivi, Anandh Sankaralingam, Mohanraj Srinivasan####
+########
 ########################################################################################
 @prefix icm:  <http://tio.models.tmforum.org/tio/v3.2.0/IntentCommonModel#> .
 @prefix imo:  <http://tio.models.tmforum.org/tio/v3.2.0/IntentManagmentOntology#> .
@@ -22,10 +22,10 @@
 # This intent report is sent on acceptance of the service intnet to the intnet 
 # manager on business level
 # 
-idan:R14R3Probe_RAN_Intent_Degraded
+idan:IS1Probe_EDGE_Intent_Degraded
   a icm:IntentReport ;
   rdfs:comment "'Intent Report after compliant'" ;
-  icm:about idan:IR1_4_RAN_ProbeFail ;
+  icm:about idan:IR1_4_EDGE_Probe ;
   # put in the live timestamp from the time the report is created:
     icm:reportTimestamp            date_to_be_generated^^xsd:dateTime ;
   icm:reportHandlingState icm:StateDegraded ;
@@ -49,9 +49,9 @@ idan:S1R2E2_reporting
 
 idan:CR3
     a icm:ConditionReport ; 
-    icm:about idan:CS1_RAN ; 
+    icm:about idan:CS1_EDGE ; 
     icm:observed [ idan:BandwidthPerSlice 9;
-                    idan:RanLatency 24 ];
+                    idan:EDGELatency 24 ];
     icm:result false .
 	
 	

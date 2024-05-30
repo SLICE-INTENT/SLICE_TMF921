@@ -18,56 +18,24 @@
 @prefix iv: <http://tio.models.tmforum.org/tio/v3.2.0/IntentValidity#> .
 
 #intent
-idan:IR1_4_RAN_ProbeFail
+idan:IR1_4_EDGE
   a icm:Intent ;
   cem:layer idan:resource ;
-  imo:intentOwner idan:RAN ;
+  imo:intentOwner idan:EDGE ;
   rdfs:comment "'Intent for Enterprise Slice'" ;
-  icm:hasExpectation idan:ES1_Slice_expectation_Probe,
-                       idan:ES1_Slice_property_Probe,  
-                        idan:ES1_Slice_reporting_expectation_Probe
+  icm:hasExpectation idan:ES1_Slice_expectation,
+                        idan:ES1_Slice_reporting_expectation
      .
 
-idan:ES1_Slice_expectation_Probe
+idan:ES1_Slice_expectation
   a icm:DeliveryExpectation ;
-    icm:target idan:RanNetwork ;
+    icm:target idan:EdgeNetwork ;
 .
 
 # targets
-idan:RanNetwork
+idan:EDGENetwork
   a icm:Target ;
-  icm:allOf [ rdfs:member idan:RanSlice]
-.
-
-# we need certain performance/QoE properties for the service
-idan:ES1_Slice_property_Probe
-  a icm:PropertyExpectation ;
-  icm:target idan:RanNetwork ;
-  logi:allOf [rdfs:member idan:CS1_RAN]
-.
-
-# conditions
-
-idan:CS1_RAN
-  a icm:Condition ;
-  rdfs:label "RanSlice" ;
-  idan:BandwidthPerSlice [ quan:greater
-                 [ rdf:value "1000"^^xsd:decimal ;
-                   icm:unit80000 "'Mbps'"]
-               ];
-  idan:UserCount [ quan:equal
-                 [ rdf:value "10000"^^xsd:integer] 
-               ];
-  idan:Location [ quan:equal
-                 [ rdf:value "houston"^^xsd:string] 
-               ];
-  idan:Service [ quan:equal
-                 [ rdf:value "gamingslice"^^xsd:string] 
-               ];
-  idan:RanLatency [ quan:smaller
-                 [ rdf:value "1"^^xsd:decimal ;
-                   icm:unit80000 "'ms'" ]
-               ] ;
+  icm:allOf [ rdfs:member idan:EDGESlice]
 .
 
 # reporting
@@ -77,16 +45,16 @@ idan:EventR1
   a rdfs:Class ;
   rdfs:subClassOf imo:Event ;
   logi:if [ t:after [imo:timeOfLastEvent [rdfs:member idan:EventR1 ;
-                                              rdfs:member idan:IR1_4_RAN_ProbeFail ]]  ,
+                                              rdfs:member idan:IR1_4_EDGE ]]  ,
                          [t:hasDuration idan:5M ] ;
                 t:before [ t:hasBeginning imo:Now ] ;
          ] ;
-  imo:eventFor idan:IR1_4_RAN_ProbeFail
+  imo:eventFor idan:IR1_4_EDGE
 .
 
-idan:ES1_Slice_reporting_expectation_Probe
+idan:ES1_Slice_reporting_expectation
   a icm:ReportingExpectation ;
-  icm:target idan:IR1_4_RAN_ProbeFail  ;
+  icm:target idan:IR1_4_EDGE  ;
   icm:reportDestination [ rdfs:member idan:Operations ] ;
   icm:reportTriggers [ rdfs:member imo:IntentRejected ; 
                        rdfs:member imo:IntentAccepted ;
