@@ -3,7 +3,7 @@
 @prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
-@prefix idan: <http://www.example.org/IDAN3#> .
+@prefix idan: <http://www.example.org/IDAN4#> .
 @prefix t:    <http://www.w3.org/2006/time#> .
 @prefix logi:  <http://tio.models.tmforum.org/tio/v3.2.0/LogicalOperators#> .
 @prefix quan: <http://tio.models.tmforum.org/tio/v3.2.0/QuantityOntology#> .
@@ -19,7 +19,7 @@
 # This intent report is sent on acceptance of the service intnet to the intnet 
 # manager on business level
 # 
-idan:IS1Probe1_Gameslice_Intent_Compliant
+idan:IS1Probe2_Gameslice_Intent_Compliant
   a icm:IntentReport ;
   rdfs:comment "'Intent Report after compliant'" ;
   icm:about idan:IS1_Gameslice_Probe_2 ;
@@ -40,7 +40,7 @@ idan:S1R2E1_property
     icm:resultFrom idan:CR1 .
 
 idan:S1R2E2_reporting
-    a icm:ReportingExpectationReport ; 
+    a icm:ReportingExpectationReport ;
     icm:about idan:ES1_reporting_expectation_Probe_2 ;
     icm:result false .
 
@@ -71,6 +71,6 @@ idan:S1R2E2_reporting
   a icm:ExpectationReport ;
   icm:reportsAbout idan:ES1_reporting_expectation ;
   icm:reportingIntervalRemaining [ a t:Duration ;
-                                   t:numericDuration idan:5M 
+                                   t:numericDuration idan:5M
                             ] ;
 .

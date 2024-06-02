@@ -15,8 +15,8 @@
     },
     "@type": "Intent",
     "lastUpdate": "2024-01-23T04:56:07.000+00:00",
-    "name": "IS1_Gameslice_Service",
-    "description": "IS1_Gameslice_Service",
+    "name": "IS1_Gameslice",
+    "description": "IS1_Gameslice",
     "creationDate": "2024-01-23T04:56:07.000+00:00",
     "@schemaLocation": "https://mycsp.com:8080/tmf-api/schema/Common/TurtleExpression.schema.json",
     "version": "1"
