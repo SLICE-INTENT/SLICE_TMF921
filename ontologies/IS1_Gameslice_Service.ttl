@@ -19,7 +19,7 @@ idan:IS1_Gameslice
   a icm:Intent ;
   cem:layer idan:service ;
   imo:intentOwner idan:Service ;
-  rdfs:comment "'Business Intent for Enterprise Gameslice'" ;
+  rdfs:comment '' ;
   icm:hasExpectation idan:ES1_gameslice_expectation_Probe_2,
                        idan:ES1_gameslice_property_Probe_2,  
                         idan:ES1_reporting_expectation_Probe_2
@@ -52,7 +52,8 @@ idan:CS1_Transport
   rdfs:label "Transport" ;
   idan:Bandwidth [ quan:greater
                  [ rdf:value "50"^^xsd:decimal ;
-                   icm:unit80000 "'Mbps'"];
+                   icm:unit80000 "'Mbps'"]
+                   ];
   idan:UserCount [ quan:equal
                  [ rdf:value "100"^^xsd:integer] 
                ];

@@ -18,7 +18,7 @@
                         "name": "sliceName",
                         "value": {
                             "@type": "string",
-                            "sliceName": "Slice2"
+                            "sliceName": "SLICE_LOS_ANGELES"
                         },
                         "valueType": "string"
                     },
@@ -100,12 +100,20 @@
                             "probe": false
                         },
                         "valueType": "boolean"
+                    },
+                    {
+                        "name": "latency",
+                        "value": {
+                            "@type": "integer",
+                            "latency": 3
+                        },
+                        "valueType": "integer"
                     }
                 ],
                 "serviceSpecification": {
-                    "id": "302478c7-2e6f-4a48-a285-bd044b1daf05",
+                    "id": "549d55d0-7bba-4e29-ab71-13de504d3cb5",
                     "invariantID": "51513c0b-233c-471f-9108-d237b153feae",
-                    "version": "41.0.0"
+                    "version": "80.0.0"
                 }
             }
         }

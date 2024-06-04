@@ -21,7 +21,7 @@
 # 
 idan:IS1_Gameslice_Intent_Degraded
   a icm:IntentReport ;
-  rdfs:comment "'Intent Report after compliant'" ;
+  rdfs:comment "'Intent Report after Degraded'" ;
   icm:about idan:IS1_Gameslice ;
   # put in the live timestamp from the time the report is created:
     icm:reportTimestamp            date_to_be_generated^^xsd:dateTime ;

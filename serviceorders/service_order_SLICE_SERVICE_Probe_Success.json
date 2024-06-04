@@ -18,7 +18,7 @@
                         "name": "sliceName",
                         "value": {
                             "@type": "string",
-                            "sliceName": "Slice2"
+                            "sliceName": "SLICE_LOS_ANGELES"
                         },
                         "valueType": "string"
                     },
