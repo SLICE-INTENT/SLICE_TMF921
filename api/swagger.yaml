@@ -836,6 +836,62 @@ paths:
           schema:
             $ref: "#/definitions/Error"
       x-swagger-router-controller: "NotificationListenersClientSide"
+  /intent/{intentName}/intentStatus:
+    get:
+      tags:
+        - "intentReport"
+      summary: "The latest intent report status by name"
+      description: "This operation returns the latest intent report status by intent name"
+      operationId: "intentStatus"
+      parameters:
+        - name: "intentName"
+          in: "path"
+          description: "Name of the parent Intent entity"
+          required: true
+          type: "string"
+      responses:
+        200:
+          description: "Success"
+          headers:
+            X-Result-Count:
+              type: "integer"
+              description: "Actual number of items returned in the response body"
+            X-Total-Count:
+              type: "integer"
+              description: "Total number of items matching criteria"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/IntentReport"
+        400:
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/Error"
+        401:
+          description: "Unauthorized"
+          schema:
+            $ref: "#/definitions/Error"
+        403:
+          description: "Forbidden"
+          schema:
+            $ref: "#/definitions/Error"
+        404:
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/Error"
+        405:
+          description: "Method Not allowed"
+          schema:
+            $ref: "#/definitions/Error"
+        409:
+          description: "Conflict"
+          schema:
+            $ref: "#/definitions/Error"
+        500:
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/Error"
+      x-swagger-router-controller: "IntentReport"
 definitions:
   Addressable:
     type: "object"

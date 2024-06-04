@@ -12,6 +12,10 @@ module.exports.listIntentReport = function listIntentReport (req, res, next) {
   IntentReport.listIntentReport(req, res, next);
 };
 
+module.exports.intentStatus = function intentStatus (req, res, next) {
+  IntentReport.intentStatus(req, res, next);
+};
+
 module.exports.retrieveIntentReport = function retrieveIntentReport (req, res, next) {
   IntentReport.retrieveIntentReport(req, res, next);
 };

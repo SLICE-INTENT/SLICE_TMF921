@@ -77,6 +77,41 @@ exports.deleteIntentReport = function(req, res, next) {
 
 };
 
+exports.intentStatus = function(req, res, next) {
+    console.log('intentStatus :: ' + req.method + ' ' + req.url + ' ' + req.headers.host);
+
+    process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
+    const https = require('https');
+
+    let intentID=req.url.substring(req.url.lastIndexOf('intent/')+7,req.url.lastIndexOf('/intentStatus'))
+
+    console.log('intentID :: ' + intentID);
+
+    const options = {
+      host: '10.81.1.26',
+      port: 3000,
+      path: `/intent/${intentID}/intentStatus`,
+      method: 'GET',
+    };
+
+    let data = '';
+    const reqIntentGUI = https.request(options, (resIntentGUI) => {
+
+      resIntentGUI.on('data', (chunk) => {
+        data += chunk;
+      });
+
+      resIntentGUI.on('end', () => {
+        console.log('Response:', data);
+
+        res.statusCode = 200;
+        res.end(data);
+      });
+    });
+
+    reqIntentGUI.end();
+}
+
 exports.listIntentReport = function(req, res, next) {
   /**
    * List or find IntentReport objects
