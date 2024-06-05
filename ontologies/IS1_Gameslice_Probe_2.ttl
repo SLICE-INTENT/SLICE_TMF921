@@ -57,10 +57,10 @@ idan:CS1_Transport
                  [ rdf:value "100"^^xsd:integer] 
                ];
   idan:Location [ quan:equal
-                 [ rdf:value "houston"^^xsd:string] 
+                 [ rdf:value "Manhattan, New York"^^xsd:string]
                ];
   idan:Service [ quan:equal
-                 [ rdf:value "gamingslice"^^xsd:string] 
+                 [ rdf:value "Park Battle Tournament Slice"^^xsd:string]
                ];
   idan:Latency [ quan:smaller
                  [ rdf:value "10"^^xsd:decimal ;
@@ -82,10 +82,10 @@ idan:CS1_Transport
                  [ rdf:value "HD1080"^^xsd:string] 
                ];
   idan:startDate [ quan:equal
-                 [ rdf:value "3/29/2024"^^xsd:string] 
+                 [ rdf:value "6/17/2024"^^xsd:string]
                ];
   idan:endDate [ quan:equal
-                 [ rdf:value "5/29/2024"^^xsd:string] 
+                 [ rdf:value "8/17/2024"^^xsd:string]
                ];               
 .
 

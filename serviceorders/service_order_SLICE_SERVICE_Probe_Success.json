@@ -18,7 +18,7 @@
                         "name": "sliceName",
                         "value": {
                             "@type": "string",
-                            "sliceName": "SLICE_LOS_ANGELES"
+                            "sliceName": "Park Battle Tournament Slice"
                         },
                         "valueType": "string"
                     },
@@ -58,7 +58,7 @@
                         "name": "initiatedBy",
                         "value": {
                             "@type": "string",
-                            "initiatedBy": "Climate Pledge Arena"
+                            "initiatedBy": "Game Arcade Inc"
                         },
                         "valueType": "string"
                     },
@@ -74,7 +74,7 @@
                         "name": "siteName",
                         "value": {
                             "@type": "string",
-                            "siteName": "Climate Pledge Arena"
+                            "siteName": "Game Arcade Inc"
                         },
                         "valueType": "string"
                     },

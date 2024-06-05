@@ -18,6 +18,7 @@ const handlerUtils = require('../utils/handlerUtils');
 const handlerUtils23 = require('../utils/handlerUtils23');
 const Intent = require('../controllers/Intent');
 const intentHandler = require('./IntentHandler')
+const moment = require('moment');
 
 const S1_children = ['IR1_1_Construction.ttl','IR1_3_Construction.ttl','IR1_2_Construction_ACTN.json']
 const S2_children = ['IR2_1_Emergency.ttl','IR2_3_Emergency.ttl','IR2_2_Emergency_ACTN.json']
@@ -118,15 +119,32 @@ function sendCreateServiceOrder(id,serviceOrder) {
     var createOrderJson = JSON.parse(createOrder);
     //add the service intent id
     var i = 1
-    if(createOrderJson.orderItems!=undefined) {
-        createOrderJson.orderItems.forEach(orderItem=>{
+    if(createOrderJson.orderItem!=undefined) {
+        createOrderJson.orderItem.forEach(orderItem=>{
           orderItem.service.publicIdentifier = id+`_${i}`;
-          if (orderItem.service.serviceRelationship[0] != undefined) {
+          if (orderItem.service.serviceRelationship != undefined && orderItem.service.serviceRelationship[0] != undefined) {
             if (orderItem.service.serviceRelationship[0].service.publicIdentifier.indexOf("serviceIntentId_CONNECTIVITY")>=0) {
               orderItem.service.serviceRelationship[0].service.publicIdentifier = id+'_1'
               orderItem.service.serviceRelationship[0].service.name = id+'_1 (' + id + '_1)'
             }
           }
+
+          var currentMoment = moment();
+          var nextDay = moment();
+          nextDay=nextDay.add(1, 'days');
+          if (orderItem.service.serviceCharacteristic != undefined) {
+              orderItem.service.serviceCharacteristic.forEach(characteristic=>{
+                if (characteristic.name==='serviceActivationDate') {
+                    characteristic.value.serviceActivationDate=currentMoment.format('DD-MMM-YYYY HH:mm:ss');
+                    console.log("=======> currentMoment " + currentMoment.format('DD-MMM-YYYY HH:mm:ss'));
+                }
+                else if (characteristic.name==='serviceExpirationDate') {
+                    characteristic.value.serviceExpirationDate=nextDay.format('DD-MMM-YYYY HH:mm:ss');
+                    console.log("=======> nextDay " + nextDay.format('DD-MMM-YYYY HH:mm:ss'));
+                }
+              })
+          }
+
           i=i+1
         })
     }
