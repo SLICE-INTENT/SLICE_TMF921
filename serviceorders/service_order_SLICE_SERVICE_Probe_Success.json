@@ -10,7 +10,7 @@
                         "name": "serviceType",
                         "value": {
                             "@type": "string",
-                            "serviceType": "Broadcasting Slice"
+                            "serviceType": "AR / VR"
                         },
                         "valueType": "string"
                     },
@@ -26,7 +26,7 @@
                         "name": "orgName",
                         "value": {
                             "@type": "string",
-                            "orgName": "ORG-1"
+                            "orgName": "Game Arcade Inc"
                         },
                         "valueType": "string"
                     },
@@ -74,7 +74,7 @@
                         "name": "siteName",
                         "value": {
                             "@type": "string",
-                            "siteName": "Game Arcade Inc"
+                            "siteName": "Manhattan, New York"
                         },
                         "valueType": "string"
                     },
@@ -82,7 +82,7 @@
                         "name": "orgId",
                         "value": {
                             "@type": "string",
-                            "orgId": "ORG-1"
+                            "orgId": "Game Arcade Inc-1"
                         },
                         "valueType": "string"
                     },
@@ -100,6 +100,45 @@
                             "probe": true
                         },
                         "valueType": "boolean"
+                    },
+                    {
+                        "name": "latency",
+                        "value": {
+                            "@type": "integer",
+                            "latency": 20
+                        },
+                        "valueType": "integer"
+                    },
+                    {
+                        "name": "serviceActivationDate",
+                        "value": {
+                            "@type": "string",
+                            "serviceActivationDate": "05-Jun-2024 13:13:41"
+                        },
+                        "valueType": "string"
+                    },
+                    {
+                        "name": "serviceExpirationDate",
+                        "value": {
+                            "@type": "string",
+                            "serviceExpirationDate": "06-Jun-2024 13:13:41"
+                        },
+                        "valueType": "string"
+                    },{
+                        "name": "latitude",
+                        "value": {
+                            "@type": "string",
+                            "latitude": "40.776676"
+                        },
+                        "valueType": "string"
+                    },
+                    {
+                        "name": "longitude",
+                        "value": {
+                            "@type": "string",
+                            "longitude": "-73.971321"
+                        },
+                        "valueType": "string"
                     }
                 ],
                 "serviceSpecification": {
